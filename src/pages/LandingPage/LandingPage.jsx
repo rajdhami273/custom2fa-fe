@@ -16,8 +16,8 @@ const LandingPage = (props) => {
               Custom 2FA
             </h1>
             <p className={css.lead + " py-3"}>
-              This project is made to create a Custom 2FA from scratch for a
-              product!
+              This project is made to create a Custom 2FA from scratch for
+              college project and future products with more improvements!
             </p>
             <div className="d-flex justify-content-around">
               <button

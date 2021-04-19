@@ -50,7 +50,8 @@ export default function Register() {
         console.log(res.data);
         localStorage.setItem("authToken", res.data.payload.token);
         if (res.data.payload) {
-          goToPage2FACode();
+          // goToPage2FACode();
+          generateCode();
         } else {
           // history.push("/register");
         }
@@ -66,6 +67,36 @@ export default function Register() {
       // toggleErrorPopup();
     } finally {
       setLoggingIn(false);
+    }
+  };
+  const generateCode = async (values) => {
+    // setLoggingIn(true);
+    try {
+      const res = await https.post("/user/generate-code", {
+        ...values,
+      });
+      if (res.data) {
+        goToPage2FACode();
+        // console.log(res.data);
+        // localStorage.setItem("authToken", res.data.payload.token);
+        // if (res.data.payload) {
+        //   getUserDetailsFromServer();
+        //   goToHome();
+        // } else {
+        //   goToRegister();
+        // }
+      }
+    } catch (error) {
+      if (error.response) {
+        // setErrorMessage(error.response.data.message);
+        // setError(error.response.data.message);
+      } else {
+        // setErrorMessage(error.message);
+        // setError(error.message);
+      }
+      // toggleErrorPopup();
+    } finally {
+      // setLoggingIn(false);
     }
   };
   return (
